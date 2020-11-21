@@ -7,10 +7,12 @@ use yii\widgets\DetailView;
 /* @var $model app\models\Tasks */
 
 $this->title = $model->title;
-$this->params['breadcrumbs'][] = ['label' => 'Tasks', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Tareas', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
+
 ?>
+
 <div class="tasks-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
@@ -18,6 +20,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <p>
         <?= Html::a('Completar Tarea', ['complete', 'id' => $model->id], ['class' => 'btn btn-warning']) ?>
         <?= Html::a('Modificar', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Añadir Etiquetas', ['/tags/create', 'task_id' => $model->id], ['class' => 'btn btn-info']) ?>
+        <?= '<p>Etiquetas: ' . implode(', ', $tags) . '</p>' ?>
 
     </p>
 
@@ -30,6 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'completed:boolean',
         ],
     ]) ?>
+
 
     <?= Html::a('Borrar', ['delete', 'id' => $model->id], [
         'class' => 'btn btn-danger',

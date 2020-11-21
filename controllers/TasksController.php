@@ -81,8 +81,10 @@ class TasksController extends Controller
      */
     public function actionView($id)
     {
+        $tags = Tasks::getTagsTitlesURL($id);
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'tags' => $tags,
         ]);
     }
 
@@ -171,7 +173,6 @@ class TasksController extends Controller
      */
     public function actionComplete($id)
     {
-        Yii::debug("entra");
         $model = Tasks::findOne($id);
         if (($model) !== null) {
             $model->completed = true;

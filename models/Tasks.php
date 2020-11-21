@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use yii\bootstrap4\Html;
 use Yii;
 
 /**
@@ -78,5 +79,17 @@ class Tasks extends \yii\db\ActiveRecord
     public function getTags()
     {
         return $this->hasMany(Tags::className(), ['id' => 'tag_id'])->viaTable('tasks_tags', ['task_id' => 'id']);
+    }
+
+
+    public static function getTagsTitlesURL($id)
+    {
+        $tags[] = Tags::find()->select(['id', 'title'])->where(['task_id' => $id])->asArray()->all();
+        $dev = [];
+        foreach ($tags[0] as $key => $value) {
+            $dev[] = Html::a($value['title'], ['/tags/view', 'id' => $value['id']]);
+        }
+
+        return $dev;
     }
 }

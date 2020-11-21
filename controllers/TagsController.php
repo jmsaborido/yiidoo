@@ -29,20 +29,7 @@ class TagsController extends Controller
         ];
     }
 
-    /**
-     * Lists all Tags models.
-     * @return mixed
-     */
-    public function actionIndex()
-    {
-        $searchModel = new TagsSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
-    }
 
     /**
      * Displays a single Tags model.
@@ -62,35 +49,19 @@ class TagsController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
+    public function actionCreate($task_id)
     {
         $model = new Tags();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        $model->task_id = $task_id;
+
+        if ($model->load(Yii::$app->request->post())) {
+            if ($model->save()) {
+            }
+            return $this->redirect(['tasks/view', 'id' => $model->task_id]);
         }
 
         return $this->render('create', [
-            'model' => $model,
-        ]);
-    }
-
-    /**
-     * Updates an existing Tags model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    public function actionUpdate($id)
-    {
-        $model = $this->findModel($id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        }
-
-        return $this->render('update', [
             'model' => $model,
         ]);
     }
@@ -106,7 +77,7 @@ class TagsController extends Controller
     {
         $this->findModel($id)->delete();
 
-        return $this->redirect(['index']);
+        return $this->redirect(['tasks/index']);
     }
 
     /**

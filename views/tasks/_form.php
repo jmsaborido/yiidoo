@@ -7,7 +7,6 @@ use yii\bootstrap4\ActiveForm;
 /* @var $model app\models\Tasks */
 /* @var $form yii\bootstrap4\ActiveForm */
 
-Yii::debug($model->completed === null)
 ?>
 
 <div class="tasks-form">

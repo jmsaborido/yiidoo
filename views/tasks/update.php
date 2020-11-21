@@ -6,9 +6,8 @@ use yii\bootstrap4\Html;
 /* @var $model app\models\Tasks */
 
 $this->title = 'Actualizar tarea: ' . $model->title;
-$this->params['breadcrumbs'][] = ['label' => 'Tasks', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Tareas', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->title, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
 ?>
 <div class="tasks-update">
 

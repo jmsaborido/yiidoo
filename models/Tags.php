@@ -42,7 +42,9 @@ class Tags extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'title' => 'Title',
+            'task_id' => 'ID de la tarea',
+            'title' => 'Titulo',
+            'tasks.title' => 'Nombre de la tarea'
         ];
     }
 
@@ -55,6 +57,6 @@ class Tags extends \yii\db\ActiveRecord
      */
     public function getTasks()
     {
-        return $this->hasMany(Tasks::className(), ['id' => 'task_id'])->viaTable('tasks_tags', ['tag_id' => 'id']);
+        return $this->hasOne(Tasks::className(), ['id' => 'task_id']);
     }
 }

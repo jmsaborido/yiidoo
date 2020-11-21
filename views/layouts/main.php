@@ -44,7 +44,6 @@ AppAsset::register($this);
             'options' => ['class' => 'navbar-nav'],
             'items' => [
                 ['label' => 'Tareas', 'url' => ['/tasks/index']],
-                ['label' => 'Etiquetas', 'url' => ['/tags/index']],
                 Yii::$app->user->isGuest ? (['label' => 'Iniciar Sesion', 'url' => ['/site/login']]) : ('<li class="nav-item">'
                     . Html::beginForm(['/site/logout'], 'post')
                     . Html::submitButton(

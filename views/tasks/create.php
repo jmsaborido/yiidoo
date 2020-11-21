@@ -6,7 +6,7 @@ use yii\bootstrap4\Html;
 /* @var $model app\models\Tasks */
 
 $this->title = 'Create Tasks';
-$this->params['breadcrumbs'][] = ['label' => 'Tasks', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Tareas', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="tasks-create">
