@@ -18,10 +18,10 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Completar Tarea', ['complete', 'id' => $model->id], ['class' => 'btn btn-warning']) ?>
+        <?= !$model->completed ? Html::a('Completar Tarea', ['complete', 'id' => $model->id], ['class' => 'btn btn-warning']) : " " ?>
         <?= Html::a('Modificar', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Añadir Etiquetas', ['/tags/create', 'task_id' => $model->id], ['class' => 'btn btn-info']) ?>
-        <?= '<p>Etiquetas: ' . implode(', ', $tags) . '</p>' ?>
+        <?= count($tags) ? '<p>Etiquetas: ' . implode(', ', $tags) . '</p>' : " " ?>
 
     </p>
 
@@ -36,12 +36,12 @@ $this->params['breadcrumbs'][] = $this->title;
     ]) ?>
 
 
-    <?= Html::a('Borrar', ['delete', 'id' => $model->id], [
+    <?= !$model->completed ? Html::a('Borrar', ['delete', 'id' => $model->id], [
         'class' => 'btn btn-danger',
         'data' => [
             'confirm' => 'Are you sure you want to delete this item?',
             'method' => 'post',
         ],
-    ]) ?>
+    ]) : ' ' ?>
 
 </div>

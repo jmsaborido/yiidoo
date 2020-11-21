@@ -40,9 +40,17 @@ $this->params['breadcrumbs'][] = $this->title;
                 'visible' => !Yii::$app->user->isGuest && Yii::$app->user->id === $searchModel->user_id,
                 'buttons' => [
                     'complete' => function ($url, $model, $key) {
-                        return Html::a(FAS::icon('check'), ['tasks/complete', 'id' => $model->id], ['title' => 'Completar Tarea']);
+                        return  Html::a(FAS::icon('check'), ['tasks/complete', 'id' => $model->id], ['title' => 'Completar Tarea']);
                     },
                 ],
+                'visibleButtons' => [
+                    'delete' => function ($model) {
+                        return !$model->completed;
+                    },
+                    'complete' => function ($model) {
+                        return !$model->completed;
+                    },
+                ]
             ],
         ],
     ]); ?>
