@@ -8,10 +8,10 @@ use Yii;
  * This is the model class for table "tags".
  *
  * @property int $id
+ * @property int $task_id
  * @property string $title
  *
- * @property TasksTags[] $tasksTags
- * @property Tasks[] $tasks
+ * @property Tasks $tasks
  */
 class Tags extends \yii\db\ActiveRecord
 {
@@ -31,6 +31,7 @@ class Tags extends \yii\db\ActiveRecord
         return [
             [['title'], 'required'],
             [['title'], 'string', 'max' => 255],
+            [['task_id'], 'exist', 'skipOnError' => true, 'targetClass' => Tasks::className(), 'targetAttribute' => ['task_id' => 'id']],
         ];
     }
 
@@ -45,15 +46,7 @@ class Tags extends \yii\db\ActiveRecord
         ];
     }
 
-    /**
-     * Gets query for [[TasksTags]].
-     *
-     * @return \yii\db\ActiveQuery
-     */
-    public function getTasksTags()
-    {
-        return $this->hasMany(TasksTags::className(), ['tag_id' => 'id']);
-    }
+
 
     /**
      * Gets query for [[Tasks]].

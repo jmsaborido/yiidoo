@@ -15,7 +15,6 @@ use Yii;
  * @property bool $completed
  *
  * @property Users $user
- * @property TasksTags[] $tasksTags
  * @property Tags[] $tags
  */
 class Tasks extends \yii\db\ActiveRecord
@@ -70,15 +69,6 @@ class Tasks extends \yii\db\ActiveRecord
         return $this->hasOne(Users::className(), ['id' => 'user_id']);
     }
 
-    /**
-     * Gets query for [[TasksTags]].
-     *
-     * @return \yii\db\ActiveQuery
-     */
-    public function getTasksTags()
-    {
-        return $this->hasMany(TasksTags::className(), ['task_id' => 'id']);
-    }
 
     /**
      * Gets query for [[Tags]].

@@ -26,15 +26,8 @@ DROP TABLE IF EXISTS tags CASCADE;
 
 CREATE TABLE tags (
     id bigserial PRIMARY KEY,
+    task_id bigserial REFERENCES tasks (id) ON DELETE NO ACTION ON UPDATE NO ACTION,
     title varchar(255) NOT NULL
-);
-
-DROP TABLE IF EXISTS tasks_tags CASCADE;
-
-CREATE TABLE tasks_tags (
-    task_id bigint REFERENCES tasks (id) ON DELETE NO ACTION ON UPDATE NO ACTION,
-    tag_id bigint REFERENCES tags (id) ON DELETE NO ACTION ON UPDATE NO ACTION,
-    PRIMARY KEY (task_id, tag_id)
 );
 
 INSERT INTO users (username, PASSWORD, email)
@@ -43,8 +36,5 @@ INSERT INTO users (username, PASSWORD, email)
 INSERT INTO tasks (user_id, deadline, title)
     VALUES (1, '2020-10-25 10:23:00', 'Clean room');
 
-INSERT INTO tags (title)
-    VALUES ('clean');
-
-INSERT INTO tasks_tags (task_id, tag_id)
-    VALUES (1, 1);
+INSERT INTO tags (title, task_id)
+    VALUES ('clean', 1);
