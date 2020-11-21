@@ -1,5 +1,6 @@
 <?php
 
+use kartik\date\DatePicker;
 use rmrevin\yii\fontawesome\FAS;
 use yii\bootstrap4\Html;
 use yii\grid\GridView;
@@ -27,10 +28,24 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
 
             'title',
-            'deadline',
+
+            [
+                'attribute' => 'deadline',
+                'format' => 'date',
+                'filter' => DatePicker::widget([
+                    'readonly' => true,
+                    'model' => $searchModel,
+                    'attribute' => 'deadline',
+                    'pluginOptions' => [
+                        'todayHighlight' => true,
+
+                        'autoclose' => true,
+                    ]
+                ])
+            ],
+
             'completed:boolean',
 
 

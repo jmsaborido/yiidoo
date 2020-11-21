@@ -17,7 +17,7 @@ CREATE TABLE tasks (
     id bigserial PRIMARY KEY,
     user_id bigint REFERENCES users (id) ON DELETE NO ACTION ON UPDATE NO ACTION,
     title varchar(255) NOT NULL,
-    deadline timestamp NOT NULL,
+    deadline date NOT NULL,
     description text,
     completed boolean NOT NULL DEFAULT FALSE
 );
@@ -34,7 +34,7 @@ INSERT INTO users (username, PASSWORD, email)
     VALUES ('pepe', crypt('pepe', gen_salt('bf', 11)), 'pepe@pepe.pep'), ('juan', crypt('juan', gen_salt('bf', 11)), 'juan@juan.jua');
 
 INSERT INTO tasks (user_id, deadline, title)
-    VALUES (1, '2020-10-25 10:23:00', 'Clean room');
+    VALUES (1, '2020-11-29', 'Clean room');
 
 INSERT INTO tags (title, task_id)
     VALUES ('clean', 1);

@@ -1,5 +1,6 @@
 <?php
 
+use kartik\date\DatePicker;
 use yii\bootstrap4\Html;
 use yii\bootstrap4\ActiveForm;
 
@@ -15,8 +16,22 @@ use yii\bootstrap4\ActiveForm;
 
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'deadline')->textInput() ?>
+    <?= $form->field($model, 'deadline')
+        ->widget(
+            DatePicker::classname(),
+            [
+                'readonly' => true,
+                'options' => ['placeholder' => date('d/m/Y')],
+                'removeButton' => false,
+                'pluginOptions' => [
+                    'todayHighlight' => true,
+                    'todayBtn' => true,
+                    'autoclose' => true,
+                    'format' => 'dd/m/yyyy'
+                ]
 
+            ]
+        ); ?>
     <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
 
     <div class="form-group">
