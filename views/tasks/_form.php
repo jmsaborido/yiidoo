@@ -21,7 +21,7 @@ use yii\bootstrap4\ActiveForm;
             DatePicker::classname(),
             [
                 'readonly' => true,
-                'options' => ['placeholder' => date('d/m/Y')],
+                'options' => ['placeholder' => date('yyyy/m/dd')],
                 'removeButton' => false,
                 'pluginOptions' => [
                     'todayHighlight' => true,
