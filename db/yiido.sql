@@ -1,3 +1,5 @@
+ALTER DATABASE yiidoo SET datestyle TO 'ISO, european';
+
 CREATE EXTENSION pgcrypto;
 
 DROP TABLE IF EXISTS users CASCADE;

@@ -27,7 +27,7 @@ use yii\bootstrap4\ActiveForm;
                     'todayHighlight' => true,
                     'todayBtn' => true,
                     'autoclose' => true,
-                    'format' => 'dd/m/yyyy'
+                    'format' => 'yyyy/dd/m'
                 ]
 
             ]

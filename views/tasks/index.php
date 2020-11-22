@@ -29,18 +29,23 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
 
-            'title',
-
+            [
+                'attribute' => 'title',
+                'headerOptions' => ['style' => 'width:20%'],
+            ],
             [
                 'attribute' => 'deadline',
                 'format' => 'date',
+                'headerOptions' => ['style' => 'width:20%'],
                 'filter' => DatePicker::widget([
                     'readonly' => true,
                     'model' => $searchModel,
+                    'value' => date('d-M-y'),
                     'attribute' => 'deadline',
                     'pluginOptions' => [
                         'todayHighlight' => true,
-
+                        'todayBtn' => true,
+                        'format' => 'yyyy/m/dd',
                         'autoclose' => true,
                     ]
                 ])
