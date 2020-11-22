@@ -53,9 +53,9 @@ class Tasks extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'user_id' => 'User ID',
-            'title' => 'Titulo',
+            'title' => 'Título',
             'deadline' => 'Fecha de vencimiento',
-            'description' => 'Descripcion',
+            'description' => 'Descripción',
             'completed' => 'Completada',
         ];
     }

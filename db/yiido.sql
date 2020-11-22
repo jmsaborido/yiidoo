@@ -35,7 +35,7 @@ INSERT INTO users (username, PASSWORD, email)
     VALUES ('pepe', crypt('pepe', gen_salt('bf', 11)), 'pepe@pepe.pep'), ('juan', crypt('juan', gen_salt('bf', 11)), 'juan@juan.jua');
 
 INSERT INTO tasks (user_id, deadline, title)
-    VALUES (1, '2020-11-29', 'Clean room');
+    VALUES (1, '2020-11-29', 'Hacer compra');
 
 INSERT INTO tags (title, task_id)
-    VALUES ('clean', 1);
+    VALUES ('compra', 1);

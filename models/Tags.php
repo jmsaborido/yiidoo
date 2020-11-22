@@ -43,7 +43,7 @@ class Tags extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'task_id' => 'ID de la tarea',
-            'title' => 'Titulo',
+            'title' => 'Título',
             'tasks.title' => 'Nombre de la tarea'
         ];
     }

@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Crear tareas', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Crear tarea', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php Pjax::begin(); ?>
@@ -27,16 +27,17 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        'layout' => '{items}{pager}',
         'columns' => [
 
             [
                 'attribute' => 'title',
-                'headerOptions' => ['style' => 'width:20%'],
+                'headerOptions' => ['style' => 'width:30%'],
             ],
             [
                 'attribute' => 'deadline',
                 'format' => 'date',
-                'headerOptions' => ['style' => 'width:20%'],
+                'headerOptions' => ['style' => 'width:30%'],
                 'filter' => DatePicker::widget([
                     'readonly' => true,
                     'model' => $searchModel,
@@ -51,16 +52,21 @@ $this->params['breadcrumbs'][] = $this->title;
                 ])
             ],
 
-            'completed:boolean',
+            [
+                'attribute' => 'completed',
+                'format' => 'boolean',
+                'headerOptions' => ['style' => 'width:20%'],
+            ],
 
 
             [
                 'class' => 'yii\grid\ActionColumn',
+                'headerOptions' => ['style' => 'width:10%'],
                 'template' => '{complete} {view} {update} {delete}',
                 'visible' => !Yii::$app->user->isGuest && Yii::$app->user->id === $searchModel->user_id,
                 'buttons' => [
                     'complete' => function ($url, $model, $key) {
-                        return  Html::a(FAS::icon('check'), ['tasks/complete', 'id' => $model->id], ['title' => 'Completar Tarea']);
+                        return  Html::a(FAS::icon('check'), ['tasks/complete', 'id' => $model->id], ['title' => 'Completar']);
                     },
                 ],
                 'visibleButtons' => [

@@ -45,7 +45,7 @@ AppAsset::register($this);
             'items' => [
 
                 !Yii::$app->user->isGuest ? ['label' => 'Tareas', 'url' => ['/tasks/index']] : ['label' => 'Registrarse', 'url' => ['/users/sign-in']],
-                Yii::$app->user->isGuest ? (['label' => 'Iniciar Sesion', 'url' => ['/site/login']]) : ('<li class="nav-item">'
+                Yii::$app->user->isGuest ? (['label' => 'Iniciar Sesión', 'url' => ['/site/login']]) : ('<li class="nav-item">'
                     . Html::beginForm(['/site/logout'], 'post')
                     . Html::submitButton(
                         'Logout (' . Yii::$app->user->identity->username . ')',

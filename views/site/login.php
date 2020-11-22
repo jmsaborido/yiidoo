@@ -7,13 +7,13 @@
 use yii\helpers\Html;
 use yii\bootstrap4\ActiveForm;
 
-$this->title = 'Iniciar Sesion';
+$this->title = 'Iniciar Sesión';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-login">
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>Introduce los siguientes campos para iniciar sesion:</p>
+    <p>Introduce los siguientes campos para iniciar sesión:</p>
 
     <?php $form = ActiveForm::begin([
         'id' => 'login-form',
@@ -31,7 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <div class="form-group">
         <div class="offset-sm-2">
-            <?= Html::submitButton('Iniciar Sesion', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
+            <?= Html::submitButton('Iniciar Sesión', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
         </div>
     </div>
 
