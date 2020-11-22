@@ -67,14 +67,6 @@ AppAsset::register($this);
         </div>
     </div>
 
-    <footer class="footer">
-        <div class="container">
-            <p class="float-left">&copy; My Company <?= date('Y') ?></p>
-
-            <p class="float-right"><?= Yii::powered() ?></p>
-        </div>
-    </footer>
-
     <?php $this->endBody() ?>
 </body>
 
