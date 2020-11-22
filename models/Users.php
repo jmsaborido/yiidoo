@@ -27,6 +27,14 @@ class Users extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     }
 
     /**
+     * Scenario used to create an user
+     */
+    const SCENARIO_CREATE = 'crear';
+
+    public $password_repeat;
+
+
+    /**
      * {@inheritdoc}
      */
     public function rules()
@@ -34,9 +42,20 @@ class Users extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
         return [
             [['username', 'email', 'password'], 'required'],
             [['username', 'email', 'password', 'auth_key'], 'string', 'max' => 255],
-            [['token'], 'string', 'max' => 32],
             [['email'], 'unique'],
             [['username'], 'unique'],
+            [
+                ['password'],
+                'trim',
+                'on' => [self::SCENARIO_CREATE],
+            ],
+            [
+                ['password_repeat'],
+                'compare',
+                'compareAttribute' => 'password',
+                'skipOnEmpty' => false,
+                'on' => [self::SCENARIO_CREATE],
+            ]
         ];
     }
 
@@ -49,9 +68,9 @@ class Users extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
             'id' => 'ID',
             'username' => 'Nombre de usuario',
             'email' => 'Email',
-            'password' => 'Password',
+            'password' => 'Contraseña',
+            'password_repeat' => 'Repetir Contraseña',
             'auth_key' => 'Auth Key',
-            'token' => 'Token',
 
         ];
     }
@@ -99,5 +118,24 @@ class Users extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     public function validatePassword($password)
     {
         return Yii::$app->security->validatePassword($password, $this->password);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function beforeSave($insert)
+    {
+        if (!parent::beforeSave($insert)) {
+            return false;
+        }
+
+        if ($insert) {
+            if ($this->scenario === self::SCENARIO_CREATE) {
+                $security = Yii::$app->security;
+                $this->auth_key = $security->generateRandomString();
+                $this->password = $security->generatePasswordHash($this->password);
+            }
+        }
+        return true;
     }
 }

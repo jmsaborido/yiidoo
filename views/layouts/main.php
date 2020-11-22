@@ -43,7 +43,8 @@ AppAsset::register($this);
         echo Nav::widget([
             'options' => ['class' => 'navbar-nav'],
             'items' => [
-                ['label' => 'Tareas', 'url' => ['/tasks/index']],
+
+                !Yii::$app->user->isGuest ? ['label' => 'Tareas', 'url' => ['/tasks/index']] : ['label' => 'Registrarse', 'url' => ['/users/sign-in']],
                 Yii::$app->user->isGuest ? (['label' => 'Iniciar Sesion', 'url' => ['/site/login']]) : ('<li class="nav-item">'
                     . Html::beginForm(['/site/logout'], 'post')
                     . Html::submitButton(
